@@ -32,20 +32,18 @@ REPLY_KEYBOARD = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
-QUADRA_TEXT = (
-    "*1-я Квадра — Альфа* _(дети)_\n"
-    "Дон Кихот, Дюма, Гюго, Робеспьер\n"
+QUADRA_VALUES = (
+    "*⚡️ 1-я Квадра Альфа* _(дети)_\n"
     "Ценности: открытость, новизна, радость познания, демократия, равенство\n\n"
-    "*2-я Квадра — Бета* _(подростки)_\n"
-    "Гамлет, Максим Горький, Жуков, Есенин\n"
+    "*🔥 2-я Квадра Бета* _(подростки)_\n"
     "Ценности: иерархия, власть, героизм, жертвенность, идеология\n\n"
-    "*3-я Квадра — Гамма* _(взрослые)_\n"
-    "Наполеон, Бальзак, Джек Лондон, Драйзер\n"
+    "*💫 3-я Квадра Гамма* _(взрослые)_\n"
     "Ценности: эффективность, результат, конкуренция, справедливость, деньги\n\n"
-    "*4-я Квадра — Дельта* _(мудрецы)_\n"
-    "Штирлиц, Достоевский, Гексли, Габен\n"
+    "*🌿 4-я Квадра Дельта* _(мудрецы)_\n"
     "Ценности: качество жизни, уют, мудрость, гармония, экология"
 )
+
+SELECT_TYPE_TEXT = "Выберите тип:
 
 def init_user_data(context):
     if SCORES not in context.user_data:
@@ -134,8 +132,9 @@ async def start_test_msg(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         await send_next_pair_new(update.message, context)
 
 async def start_compat_msg(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(QUADRA_TEXT,
-        reply_markup=InlineKeyboardMarkup(_make_type_keyboard("my")), parse_mode='Markdown')
+    keyboard = [[InlineKeyboardButton("📖 Ценности квадр", callback_data='show_values')]] + _make_type_keyboard("my")
+    await update.message.reply_text("Выберите ВАШ тип:",
+        reply_markup=InlineKeyboardMarkup(keyboard))
 
 async def start_test_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -282,12 +281,24 @@ async def calculate_and_send_result_edit(message, context) -> None:
 async def start_compat_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
+    keyboard = [[InlineKeyboardButton("📖 Ценности квадр", callback_data='show_values')]] + _make_type_keyboard("my")
     try:
-        await query.message.edit_text(QUADRA_TEXT,
-            reply_markup=InlineKeyboardMarkup(_make_type_keyboard("my")), parse_mode='Markdown')
+        await query.message.edit_text("Выберите ВАШ тип:",
+            reply_markup=InlineKeyboardMarkup(keyboard))
     except Exception:
-        await query.message.reply_text(QUADRA_TEXT,
-            reply_markup=InlineKeyboardMarkup(_make_type_keyboard("my")), parse_mode='Markdown')
+        await query.message.reply_text("Выберите ВАШ тип:",
+            reply_markup=InlineKeyboardMarkup(keyboard))
+
+async def show_values_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    query = update.callback_query
+    await query.answer()
+    keyboard = [[InlineKeyboardButton("◀️ Назад", callback_data='start_compat')]]
+    try:
+        await query.message.edit_text(QUADRA_VALUES,
+            reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+    except Exception:
+        await query.message.reply_text(QUADRA_VALUES,
+            reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
 
 async def type_selected_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -297,12 +308,13 @@ async def type_selected_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     selected_type_code = parts[1]
     if prefix == "my":
         context.user_data['my_type'] = selected_type_code
+        keyboard = [[InlineKeyboardButton("📖 Ценности квадр", callback_data='show_values')]] + _make_type_keyboard("partner")
         try:
-            await query.message.edit_text(QUADRA_TEXT,
-                reply_markup=InlineKeyboardMarkup(_make_type_keyboard("partner")), parse_mode='Markdown')
+            await query.message.edit_text("Выберите тип ПАРТНЕРА:",
+                reply_markup=InlineKeyboardMarkup(keyboard))
         except Exception:
-            await query.message.reply_text(QUADRA_TEXT,
-                reply_markup=InlineKeyboardMarkup(_make_type_keyboard("partner")), parse_mode='Markdown')
+            await query.message.reply_text("Выберите тип ПАРТНЕРА:",
+                reply_markup=InlineKeyboardMarkup(keyboard))
     elif prefix == "partner":
         context.user_data['partner_type'] = selected_type_code
         await calculate_and_send_relation(query.message, context)
@@ -433,6 +445,7 @@ def main() -> None:
     application.add_handler(CallbackQueryHandler(restart_test, pattern='^restart_test$'))
     application.add_handler(CallbackQueryHandler(continue_test, pattern='^continue_test$'))
     application.add_handler(CallbackQueryHandler(handle_answer, pattern='^ans_'))
+    application.add_handler(CallbackQueryHandler(show_values_cb, pattern='^show_values$'))
     application.add_handler(CallbackQueryHandler(lambda u, c: u.callback_query.answer(), pattern='^ignore$'))
     application.add_handler(CallbackQueryHandler(type_selected_cb, pattern='^(my|partner)_'))
     application.add_handler(CallbackQueryHandler(my_result_cb, pattern='^my_result$'))
