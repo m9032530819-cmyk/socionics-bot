@@ -71,14 +71,16 @@ def _log_result(message, sociotype_info):
         logger.error(f"Failed to write result log: {e}")
 
 def _make_type_keyboard(prefix):
+    quadras = [
+        ("⚡️ 1-я Квадра Альфа — дети", ['ILE', 'SEI', 'ESE', 'LII']),
+        ("🔥 2-я Квадра Бета — подростки", ['EIE', 'LSI', 'SLE', 'IEI']),
+        ("💫 3-я Квадра Гамма — взрослые", ['SEE', 'ILI', 'LIE', 'ESI']),
+        ("🌿 4-я Квадра Дельта — мудрецы", ['LSE', 'EII', 'IEE', 'SLI']),
+    ]
     keyboard = []
-    row = []
-    for code in TIMS_ORDER:
-        row.append(InlineKeyboardButton(TYPES[code]['name'], callback_data=f"{prefix}_{code}"))
-        if len(row) == 4:
-            keyboard.append(row)
-            row = []
-    if row:
+    for quadra_name, codes in quadras:
+        keyboard.append([InlineKeyboardButton(quadra_name, callback_data='ignore')])
+        row = [InlineKeyboardButton(TYPES[code]['name'], callback_data=f"{prefix}_{code}") for code in codes]
         keyboard.append(row)
     return keyboard
 
@@ -431,6 +433,7 @@ def main() -> None:
     application.add_handler(CallbackQueryHandler(restart_test, pattern='^restart_test$'))
     application.add_handler(CallbackQueryHandler(continue_test, pattern='^continue_test$'))
     application.add_handler(CallbackQueryHandler(handle_answer, pattern='^ans_'))
+    application.add_handler(CallbackQueryHandler(lambda u, c: u.callback_query.answer(), pattern='^ignore$'))
     application.add_handler(CallbackQueryHandler(type_selected_cb, pattern='^(my|partner)_'))
     application.add_handler(CallbackQueryHandler(my_result_cb, pattern='^my_result$'))
     application.add_handler(CallbackQueryHandler(reset_type, pattern='^reset_type$'))
