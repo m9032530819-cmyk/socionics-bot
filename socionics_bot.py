@@ -27,24 +27,24 @@ SCORES = 'scores'
 USER_TYPE = 'user_type'
 
 REPLY_KEYBOARD = ReplyKeyboardMarkup(
-    [[KeyboardButton("рџЏ  Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ")],
-     [KeyboardButton("рџ“ќ РўРµСЃС‚"), KeyboardButton("рџ¤ќ РЎРѕРІРјРµСЃС‚РёРјРѕСЃС‚СЊ")]],
+    [[KeyboardButton("🏠 Главное меню")],
+     [KeyboardButton("📝 Тест"), KeyboardButton("🤝 Совместимость")]],
     resize_keyboard=True
 )
 
 QUADRA_TEXT = (
-    "*1-СЏ РљРІР°РґСЂР° вЂ” РђР»СЊС„Р°* _(РґРµС‚Рё)_\n"
-    "Р”РѕРЅ РљРёС…РѕС‚, Р”СЋРјР°, Р“СЋРіРѕ, Р РѕР±РµСЃРїСЊРµСЂ\n"
-    "Р¦РµРЅРЅРѕСЃС‚Рё: РѕС‚РєСЂС‹С‚РѕСЃС‚СЊ, РЅРѕРІРёР·РЅР°, СЂР°РґРѕСЃС‚СЊ РїРѕР·РЅР°РЅРёСЏ, РґРµРјРѕРєСЂР°С‚РёСЏ, СЂР°РІРµРЅСЃС‚РІРѕ\n\n"
-    "*2-СЏ РљРІР°РґСЂР° вЂ” Р‘РµС‚Р°* _(РїРѕРґСЂРѕСЃС‚РєРё)_\n"
-    "Р“Р°РјР»РµС‚, РњР°РєСЃРёРј Р“РѕСЂСЊРєРёР№, Р–СѓРєРѕРІ, Р•СЃРµРЅРёРЅ\n"
-    "Р¦РµРЅРЅРѕСЃС‚Рё: РёРµСЂР°СЂС…РёСЏ, РІР»Р°СЃС‚СЊ, РіРµСЂРѕРёР·Рј, Р¶РµСЂС‚РІРµРЅРЅРѕСЃС‚СЊ, РёРґРµРѕР»РѕРіРёСЏ\n\n"
-    "*3-СЏ РљРІР°РґСЂР° вЂ” Р“Р°РјРјР°* _(РІР·СЂРѕСЃР»С‹Рµ)_\n"
-    "РќР°РїРѕР»РµРѕРЅ, Р‘Р°Р»СЊР·Р°Рє, Р”Р¶РµРє Р›РѕРЅРґРѕРЅ, Р”СЂР°Р№Р·РµСЂ\n"
-    "Р¦РµРЅРЅРѕСЃС‚Рё: СЌС„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ, СЂРµР·СѓР»СЊС‚Р°С‚, РєРѕРЅРєСѓСЂРµРЅС†РёСЏ, СЃРїСЂР°РІРµРґР»РёРІРѕСЃС‚СЊ, РґРµРЅСЊРіРё\n\n"
-    "*4-СЏ РљРІР°РґСЂР° вЂ” Р”РµР»СЊС‚Р°* _(РјСѓРґСЂРµС†С‹)_\n"
-    "РЁС‚РёСЂР»РёС†, Р”РѕСЃС‚РѕРµРІСЃРєРёР№, Р“РµРєСЃР»Рё, Р“Р°Р±РµРЅ\n"
-    "Р¦РµРЅРЅРѕСЃС‚Рё: РєР°С‡РµСЃС‚РІРѕ Р¶РёР·РЅРё, СѓСЋС‚, РјСѓРґСЂРѕСЃС‚СЊ, РіР°СЂРјРѕРЅРёСЏ, СЌРєРѕР»РѕРіРёСЏ"
+    "*1-я Квадра — Альфа* _(дети)_\n"
+    "Дон Кихот, Дюма, Гюго, Робеспьер\n"
+    "Ценности: открытость, новизна, радость познания, демократия, равенство\n\n"
+    "*2-я Квадра — Бета* _(подростки)_\n"
+    "Гамлет, Максим Горький, Жуков, Есенин\n"
+    "Ценности: иерархия, власть, героизм, жертвенность, идеология\n\n"
+    "*3-я Квадра — Гамма* _(взрослые)_\n"
+    "Наполеон, Бальзак, Джек Лондон, Драйзер\n"
+    "Ценности: эффективность, результат, конкуренция, справедливость, деньги\n\n"
+    "*4-я Квадра — Дельта* _(мудрецы)_\n"
+    "Штирлиц, Достоевский, Гексли, Габен\n"
+    "Ценности: качество жизни, уют, мудрость, гармония, экология"
 )
 
 def init_user_data(context):
@@ -85,45 +85,45 @@ def _make_type_keyboard(prefix):
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user
     await context.bot.set_my_commands([
-        ("start", "Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ"),
-        ("test", "РќР°С‡Р°С‚СЊ/РџСЂРѕРґРѕР»Р¶РёС‚СЊ С‚РµСЃС‚"),
-        ("compat", "РџСЂРѕРІРµСЂРёС‚СЊ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚СЊ")
+        ("start", "Главное меню"),
+        ("test", "Начать/Продолжить тест"),
+        ("compat", "Проверить совместимость")
     ])
     text = (
-        f"РџСЂРёРІРµС‚, {user.first_name}! рџ‘‹\n\n"
-        "Р—РЅР°РµС€СЊ, РїРѕС‡РµРјСѓ СЃ РѕРґРЅРёРјРё Р»СЋРґСЊРјРё С‚С‹ РЅР° РѕРґРЅРѕР№ РІРѕР»РЅРµ, "
-        "Р° СЃ РґСЂСѓРіРёРјРё вЂ” Р±СѓРґС‚Рѕ РіРѕРІРѕСЂРёС€СЊ РЅР° СЂР°Р·РЅС‹С… СЏР·С‹РєР°С…?\n\n"
-        "РЎРѕС†РёРѕРЅРёРєР° Р·РЅР°РµС‚ РѕС‚РІРµС‚. Р­С‚Рѕ СЃРёСЃС‚РµРјР°, РѕСЃРЅРѕРІР°РЅРЅР°СЏ РЅР° СѓС‡РµРЅРёРё "
-        "РљР°СЂР»Р° Р®РЅРіР° Рѕ С‚РёРїР°С… Р»РёС‡РЅРѕСЃС‚Рё. РћРЅР° РІС‹РґРµР»СЏРµС‚ 16 СѓРЅРёРєР°Р»СЊРЅС‹С… С‚РёРїРѕРІ вЂ” "
-        "Рё РєР°Р¶РґС‹Р№ РёР· РЅРёС… РІРѕСЃРїСЂРёРЅРёРјР°РµС‚ РјРёСЂ, РїСЂРёРЅРёРјР°РµС‚ СЂРµС€РµРЅРёСЏ "
-        "Рё СЃС‚СЂРѕРёС‚ РѕС‚РЅРѕС€РµРЅРёСЏ РїРѕ-СЃРІРѕРµРјСѓ.\n\n"
-        "РљС‚Рѕ-С‚Рѕ СЂРѕР¶РґС‘РЅ РІРµСЃС‚Рё Р·Р° СЃРѕР±РѕР№. РљС‚Рѕ-С‚Рѕ вЂ” РІРёРґРµС‚СЊ Р±СѓРґСѓС‰РµРµ СЂР°РЅСЊС€Рµ РґСЂСѓРіРёС…. "
-        "РљС‚Рѕ-С‚Рѕ СЃРѕР·РґР°С‘С‚ РІРѕРєСЂСѓРі СЃРµР±СЏ С‚РµРїР»Рѕ, Р° РєС‚Рѕ-С‚Рѕ вЂ” Р±РµР·СѓРїСЂРµС‡РЅС‹Рµ СЃРёСЃС‚РµРјС‹.\n\n"
-        "Рђ Рє РєР°РєРѕРјСѓ С‚РёРїСѓ РѕС‚РЅРѕСЃРёС€СЊСЃСЏ С‚С‹?\n\n"
-        "РџСЂРѕР№РґРё РєРѕСЂРѕС‚РєРёР№ С‚РµСЃС‚ вЂ” РІСЃРµРіРѕ РїР°СЂР° РјРёРЅСѓС‚ вЂ” Рё СѓР·РЅР°Р№ СЃРІРѕР№ СЃРѕС†РёРѕС‚РёРї. "
-        "Р’РѕР·РјРѕР¶РЅРѕ, С‚С‹ РЅР°РєРѕРЅРµС† РїРѕР№РјС‘С€СЊ, РїРѕС‡РµРјСѓ С‚С‹ РёРјРµРЅРЅРѕ С‚Р°РєРѕР№. "
-        "Р СЌС‚Рѕ Р±СѓРґРµС‚ СЃР°РјРѕРµ РёРЅС‚РµСЂРµСЃРЅРѕРµ РѕС‚РєСЂС‹С‚РёРµ Рѕ СЃРµР±Рµ Р·Р° РґРѕР»РіРѕРµ РІСЂРµРјСЏ."
+        f"Привет, {user.first_name}! 👋\n\n"
+        "Знаешь, почему с одними людьми ты на одной волне, "
+        "а с другими — будто говоришь на разных языках?\n\n"
+        "Соционика знает ответ. Это система, основанная на учении "
+        "Карла Юнга о типах личности. Она выделяет 16 уникальных типов — "
+        "и каждый из них воспринимает мир, принимает решения "
+        "и строит отношения по-своему.\n\n"
+        "Кто-то рождён вести за собой. Кто-то — видеть будущее раньше других. "
+        "Кто-то создаёт вокруг себя тепло, а кто-то — безупречные системы.\n\n"
+        "А к какому типу относишься ты?\n\n"
+        "Пройди короткий тест — всего пара минут — и узнай свой социотип. "
+        "Возможно, ты наконец поймёшь, почему ты именно такой. "
+        "И это будет самое интересное открытие о себе за долгое время."
     )
     if context.user_data.get(CURRENT_DICHOTOMY, 0) > 0 or context.user_data.get(CURRENT_PAIR_INDEX, 0) > 0:
-        text += "\n\nрџ”” РЈ С‚РµР±СЏ РµСЃС‚СЊ РЅРµР·Р°РІРµСЂС€РµРЅРЅС‹Р№ С‚РµСЃС‚! РќР°Р¶РјРё 'РўРµСЃС‚', С‡С‚РѕР±С‹ РїСЂРѕРґРѕР»Р¶РёС‚СЊ."
+        text += "\n\n🔔 У тебя есть незавершенный тест! Нажми 'Тест', чтобы продолжить."
     inline_keyboard = [
-        [InlineKeyboardButton("рџ“ќ РўРµСЃС‚", callback_data='start_test')],
-        [InlineKeyboardButton("рџ¤ќ РЎРѕРІРјРµСЃС‚РёРјРѕСЃС‚СЊ", callback_data='start_compat')]
+        [InlineKeyboardButton("📝 Тест", callback_data='start_test')],
+        [InlineKeyboardButton("🤝 Совместимость", callback_data='start_compat')]
     ]
     if context.user_data.get(USER_TYPE):
         code = context.user_data[USER_TYPE]
         name = TYPES.get(code, {}).get('name', '')
-        inline_keyboard.insert(1, [InlineKeyboardButton(f"рџ‘¤ РњРѕР№ С‚РёРї: {name}", callback_data='my_result')])
+        inline_keyboard.insert(1, [InlineKeyboardButton(f"👤 Мой тип: {name}", callback_data='my_result')])
     await update.message.reply_text(text, reply_markup=REPLY_KEYBOARD)
-    await update.message.reply_text("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ:", reply_markup=InlineKeyboardMarkup(inline_keyboard))
+    await update.message.reply_text("Выберите действие:", reply_markup=InlineKeyboardMarkup(inline_keyboard))
 
 async def start_test_msg(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if context.user_data.get(CURRENT_DICHOTOMY, 0) > 0 or context.user_data.get(CURRENT_PAIR_INDEX, 0) > 0:
         keyboard = [
-            [InlineKeyboardButton("в–¶пёЏ РџСЂРѕРґРѕР»Р¶РёС‚СЊ", callback_data='continue_test')],
-            [InlineKeyboardButton("рџ”„ РќР°С‡Р°С‚СЊ Р·Р°РЅРѕРІРѕ", callback_data='restart_test')]
+            [InlineKeyboardButton("▶️ Продолжить", callback_data='continue_test')],
+            [InlineKeyboardButton("🔄 Начать заново", callback_data='restart_test')]
         ]
-        await update.message.reply_text("РЈ РІР°СЃ РµСЃС‚СЊ РЅРµР·Р°РІРµСЂС€РµРЅРЅС‹Р№ С‚РµСЃС‚. РџСЂРѕРґРѕР»Р¶РёС‚СЊ РёР»Рё РЅР°С‡Р°С‚СЊ Р·Р°РЅРѕРІРѕ?",
+        await update.message.reply_text("У вас есть незавершенный тест. Продолжить или начать заново?",
                                         reply_markup=InlineKeyboardMarkup(keyboard))
     else:
         context.user_data[CURRENT_DICHOTOMY] = 0
@@ -140,10 +140,10 @@ async def start_test_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     await query.answer()
     if context.user_data.get(CURRENT_DICHOTOMY, 0) > 0 or context.user_data.get(CURRENT_PAIR_INDEX, 0) > 0:
         keyboard = [
-            [InlineKeyboardButton("в–¶пёЏ РџСЂРѕРґРѕР»Р¶РёС‚СЊ", callback_data='continue_test')],
-            [InlineKeyboardButton("рџ”„ РќР°С‡Р°С‚СЊ Р·Р°РЅРѕРІРѕ", callback_data='restart_test')]
+            [InlineKeyboardButton("▶️ Продолжить", callback_data='continue_test')],
+            [InlineKeyboardButton("🔄 Начать заново", callback_data='restart_test')]
         ]
-        await query.message.edit_text("РЈ РІР°СЃ РµСЃС‚СЊ РЅРµР·Р°РІРµСЂС€РµРЅРЅС‹Р№ С‚РµСЃС‚. РџСЂРѕРґРѕР»Р¶РёС‚СЊ РёР»Рё РЅР°С‡Р°С‚СЊ Р·Р°РЅРѕРІРѕ?",
+        await query.message.edit_text("У вас есть незавершенный тест. Продолжить или начать заново?",
                                       reply_markup=InlineKeyboardMarkup(keyboard))
     else:
         context.user_data[CURRENT_DICHOTOMY] = 0
@@ -177,7 +177,7 @@ async def send_next_pair_new(message, context) -> None:
             w2_text, w2_val = pairs[p_idx + 1]
             total_pairs = len(pairs) // 2
             current_pair = (p_idx // 2) + 1
-            text = f"Р‘Р»РѕРє {d_idx + 1}/4. РџР°СЂР° {current_pair}/{total_pairs}:\nР§С‚Рѕ РІР°Рј Р±Р»РёР¶Рµ?"
+            text = f"Блок {d_idx + 1}/4. Пара {current_pair}/{total_pairs}:\nЧто вам ближе?"
             keyboard = [
                 [InlineKeyboardButton(w1_text, callback_data=f"ans_{w1_val}")],
                 [InlineKeyboardButton(w2_text, callback_data=f"ans_{w2_val}")]
@@ -203,7 +203,7 @@ async def send_next_pair_edit(message, context) -> None:
             w2_text, w2_val = pairs[p_idx + 1]
             total_pairs = len(pairs) // 2
             current_pair = (p_idx // 2) + 1
-            text = f"Р‘Р»РѕРє {d_idx + 1}/4. РџР°СЂР° {current_pair}/{total_pairs}:\nР§С‚Рѕ РІР°Рј Р±Р»РёР¶Рµ?"
+            text = f"Блок {d_idx + 1}/4. Пара {current_pair}/{total_pairs}:\nЧто вам ближе?"
             keyboard = [
                 [InlineKeyboardButton(w1_text, callback_data=f"ans_{w1_val}")],
                 [InlineKeyboardButton(w2_text, callback_data=f"ans_{w2_val}")]
@@ -232,7 +232,7 @@ def _build_result_text(context):
     scores = context.user_data[SCORES]
     sociotype_code = calculate_type(scores)
     sociotype_info = TYPES.get(sociotype_code, {
-        "name": "РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї", "alias": "???", "desc": "РћРїРёСЃР°РЅРёРµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚."
+        "name": "Неизвестный тип", "alias": "???", "desc": "Описание отсутствует."
     })
     context.user_data[USER_TYPE] = sociotype_code
     context.user_data[CURRENT_DICHOTOMY] = 0
@@ -241,9 +241,9 @@ def _build_result_text(context):
     prof_text = ""
     if sociotype_info.get('prof'):
         prof_lines = sociotype_info['prof'].split('\n')
-        prof_text = "\n\nрџ’ј РџСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹Рµ С†РµРЅРЅРѕСЃС‚Рё:\n" + "\n".join([f"вЂў {line}" for line in prof_lines])
-    best_relations = {'Р”СѓР°Р»СЊРЅС‹Рµ': 'рџ’љ', 'РўРѕР¶РґРµСЃС‚РІРµРЅРЅС‹Рµ': 'рџ’›', 'РџРѕР»СѓРґСѓР°Р»СЊРЅС‹Рµ': 'рџ©µ', 'Р РѕРґСЃС‚РІРµРЅРЅС‹Рµ': 'рџ¤ќ'}
-    best_text = "\n\nвњЁ Р›СѓС‡С€РёРµ СЃРѕС‡РµС‚Р°РЅРёСЏ:\n"
+        prof_text = "\n\n💼 Профессиональные ценности:\n" + "\n".join([f"• {line}" for line in prof_lines])
+    best_relations = {'Дуальные': '💚', 'Тождественные': '💛', 'Полудуальные': '🩵', 'Родственные': '🤝'}
+    best_text = "\n\n✨ Лучшие сочетания:\n"
     type_relations = RELATIONS_DATA.get(sociotype_code, {})
     found = {name: [] for name in best_relations}
     for partner_code, rel in type_relations.items():
@@ -255,12 +255,12 @@ def _build_result_text(context):
         if found[rel_name]:
             best_text += f"{emoji} {rel_name}: {', '.join(found[rel_name])}\n"
     result_text = (
-        f"рџЋЇ Р’Р°С€ СЃРѕС†РёРѕС‚РёРї: {sociotype_info['name']} ({sociotype_info.get('alias', '')})\n\n"
-        f"рџ“– {sociotype_info['desc']}{prof_text}{best_text}"
+        f"🎯 Ваш социотип: {sociotype_info['name']} ({sociotype_info.get('alias', '')})\n\n"
+        f"📖 {sociotype_info['desc']}{prof_text}{best_text}"
     )
     keyboard = [
-        [InlineKeyboardButton("рџ¤ќ РЎРѕРІРјРµСЃС‚РёРјРѕСЃС‚СЊ", callback_data='start_compat')],
-        [InlineKeyboardButton("рџЏ  Р’ РјРµРЅСЋ", callback_data='to_main')]
+        [InlineKeyboardButton("🤝 Совместимость", callback_data='start_compat')],
+        [InlineKeyboardButton("🏠 В меню", callback_data='to_main')]
     ]
     return result_text, keyboard, sociotype_info
 
@@ -311,43 +311,43 @@ async def calculate_and_send_relation(message, context) -> None:
     if my_type and partner_type:
         relation_info = get_relation(my_type, partner_type)
         text = (
-            f"рџ‘¤ Р’С‹: {TYPES[my_type]['name']}\n"
-            f"рџ‘¤ РџР°СЂС‚РЅРµСЂ: {TYPES[partner_type]['name']}\n\n"
-            f"рџ¤ќ РћС‚РЅРѕС€РµРЅРёСЏ: {relation_info['name']}\n\n"
-            f"рџ“– {relation_info['desc']}"
+            f"👤 Вы: {TYPES[my_type]['name']}\n"
+            f"👤 Партнер: {TYPES[partner_type]['name']}\n\n"
+            f"🤝 Отношения: {relation_info['name']}\n\n"
+            f"📖 {relation_info['desc']}"
         )
         keyboard = [
-            [InlineKeyboardButton("рџ”„ РџСЂРѕРІРµСЂРёС‚СЊ РµС‰Рµ СЂР°Р·", callback_data='start_compat')],
-            [InlineKeyboardButton("рџЏ  Р’ РјРµРЅСЋ", callback_data='to_main')]
+            [InlineKeyboardButton("🔄 Проверить еще раз", callback_data='start_compat')],
+            [InlineKeyboardButton("🏠 В меню", callback_data='to_main')]
         ]
         try:
             await message.edit_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
         except Exception:
             await message.reply_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
     else:
-        await message.reply_text("РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.")
+        await message.reply_text("Произошла ошибка. Попробуйте снова.")
 
 async def my_result_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
     code = context.user_data.get(USER_TYPE)
     if not code:
-        await query.message.edit_text("РЈ РІР°СЃ РµС‰С‘ РЅРµС‚ СЂРµР·СѓР»СЊС‚Р°С‚Р°. РџСЂРѕР№РґРёС‚Рµ С‚РµСЃС‚!",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("рџ“ќ РўРµСЃС‚", callback_data='start_test')]]))
+        await query.message.edit_text("У вас ещё нет результата. Пройдите тест!",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 Тест", callback_data='start_test')]]))
         return
     sociotype_info = TYPES.get(code, {})
     prof_text = ""
     if sociotype_info.get('prof'):
         prof_lines = sociotype_info['prof'].split('\n')
-        prof_text = "\n\nрџ’ј РџСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹Рµ С†РµРЅРЅРѕСЃС‚Рё:\n" + "\n".join([f"вЂў {line}" for line in prof_lines])
+        prof_text = "\n\n💼 Профессиональные ценности:\n" + "\n".join([f"• {line}" for line in prof_lines])
     text = (
-        f"рџ‘¤ Р’Р°С€ СЃРѕС†РёРѕС‚РёРї: {sociotype_info.get('name', '')} ({sociotype_info.get('alias', '')})\n\n"
-        f"рџ“– {sociotype_info.get('desc', '')}{prof_text}"
+        f"👤 Ваш социотип: {sociotype_info.get('name', '')} ({sociotype_info.get('alias', '')})\n\n"
+        f"📖 {sociotype_info.get('desc', '')}{prof_text}"
     )
     keyboard = [
-        [InlineKeyboardButton("рџ¤ќ РЎРѕРІРјРµСЃС‚РёРјРѕСЃС‚СЊ", callback_data='start_compat')],
-        [InlineKeyboardButton("рџ”„ РџСЂРѕР№С‚Рё Р·Р°РЅРѕРІРѕ", callback_data='reset_type')],
-        [InlineKeyboardButton("рџЏ  Р’ РјРµРЅСЋ", callback_data='to_main')]
+        [InlineKeyboardButton("🤝 Совместимость", callback_data='start_compat')],
+        [InlineKeyboardButton("🔄 Пройти заново", callback_data='reset_type')],
+        [InlineKeyboardButton("🏠 В меню", callback_data='to_main')]
     ]
     try:
         await query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
@@ -367,15 +367,15 @@ async def to_main_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
     query = update.callback_query
     await query.answer()
     user = update.effective_user
-    text = f"РџСЂРёРІРµС‚, {user.first_name}! РЇ Р±РѕС‚ РїРѕ СЃРѕС†РёРѕРЅРёРєРµ.\n\nРСЃРїРѕР»СЊР·СѓР№ РєРЅРѕРїРєРё РЅРёР¶Рµ рџ‘‡"
+    text = f"Привет, {user.first_name}! Я бот по соционике.\n\nИспользуй кнопки ниже 👇"
     inline_keyboard = [
-        [InlineKeyboardButton("рџ“ќ РўРµСЃС‚", callback_data='start_test')],
-        [InlineKeyboardButton("рџ¤ќ РЎРѕРІРјРµСЃС‚РёРјРѕСЃС‚СЊ", callback_data='start_compat')]
+        [InlineKeyboardButton("📝 Тест", callback_data='start_test')],
+        [InlineKeyboardButton("🤝 Совместимость", callback_data='start_compat')]
     ]
     if context.user_data.get(USER_TYPE):
         code = context.user_data[USER_TYPE]
         name = TYPES.get(code, {}).get('name', '')
-        inline_keyboard.insert(1, [InlineKeyboardButton(f"рџ‘¤ РњРѕР№ С‚РёРї: {name}", callback_data='my_result')])
+        inline_keyboard.insert(1, [InlineKeyboardButton(f"👤 Мой тип: {name}", callback_data='my_result')])
     try:
         await query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(inline_keyboard))
     except Exception:
@@ -388,7 +388,7 @@ async def admin_get_results(update: Update, context: ContextTypes.DEFAULT_TYPE) 
         with open("results.txt", "r", encoding="utf-8") as f:
             lines = f.readlines()
         if not lines:
-            await update.message.reply_text("рџ“­ Р РµР·СѓР»СЊС‚Р°С‚РѕРІ РїРѕРєР° РЅРµС‚.")
+            await update.message.reply_text("📭 Результатов пока нет.")
             return
         from collections import Counter
         types_count = Counter()
@@ -397,17 +397,17 @@ async def admin_get_results(update: Update, context: ContextTypes.DEFAULT_TYPE) 
                 result = line.split("Result:")[-1].strip()
                 types_count[result] += 1
         total = len(lines)
-        stats = f"рџ“Љ Р’СЃРµРіРѕ РїСЂРѕР№РґРµРЅРѕ С‚РµСЃС‚РѕРІ: {total}\n\nрџЏ† РўРѕРї СЃРѕС†РёРѕС‚РёРїРѕРІ:\n"
+        stats = f"📊 Всего пройдено тестов: {total}\n\n🏆 Топ социотипов:\n"
         for t, count in types_count.most_common(5):
-            stats += f"  вЂў {t}: {count}\n"
+            stats += f"  • {t}: {count}\n"
         await update.message.reply_text(stats)
         with open("results.txt", "rb") as f:
             await update.message.reply_document(document=f, filename="results.txt",
-                caption=f"рџ“‹ РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє ({total} С‡РµР».)")
+                caption=f"📋 Полный список ({total} чел.)")
     except FileNotFoundError:
-        await update.message.reply_text("рџ“­ Р РµР·СѓР»СЊС‚Р°С‚РѕРІ РїРѕРєР° РЅРµС‚.")
+        await update.message.reply_text("📭 Результатов пока нет.")
     except Exception as e:
-        await update.message.reply_text(f"вќЊ РћС€РёР±РєР°: {e}")
+        await update.message.reply_text(f"❌ Ошибка: {e}")
 
 async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
     logger.error("Exception while handling an update:", exc_info=context.error)
@@ -423,9 +423,9 @@ def main() -> None:
     application.add_handler(CommandHandler("test", start_test_msg))
     application.add_handler(CommandHandler("compat", start_compat_msg))
     application.add_handler(CommandHandler("admin", admin_get_results))
-    application.add_handler(MessageHandler(filters.Regex("рџЏ  Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ"), start))
-    application.add_handler(MessageHandler(filters.Regex("рџ“ќ РўРµСЃС‚"), start_test_msg))
-    application.add_handler(MessageHandler(filters.Regex("рџ¤ќ РЎРѕРІРјРµСЃС‚РёРјРѕСЃС‚СЊ"), start_compat_msg))
+    application.add_handler(MessageHandler(filters.Regex("🏠 Главное меню"), start))
+    application.add_handler(MessageHandler(filters.Regex("📝 Тест"), start_test_msg))
+    application.add_handler(MessageHandler(filters.Regex("🤝 Совместимость"), start_compat_msg))
     application.add_handler(CallbackQueryHandler(start_test_cb, pattern='^start_test$'))
     application.add_handler(CallbackQueryHandler(start_compat_cb, pattern='^start_compat$'))
     application.add_handler(CallbackQueryHandler(restart_test, pattern='^restart_test$'))
