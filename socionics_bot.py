@@ -293,7 +293,7 @@ async def show_type_selection_new(message, text, prefix):
     keyboard = []
     row = []
     for code in TIMS_ORDER:
-        row.append(InlineKeyboardButton(TYPES[code]['alias'], callback_data=f"{prefix}_{code}"))
+        row.append(InlineKeyboardButton(TYPES[code]['name'], callback_data=f"{prefix}_{code}"))
         if len(row) == 4:
             keyboard.append(row)
             row = []
@@ -307,7 +307,7 @@ async def show_type_selection_edit(message, text, prefix):
     keyboard = []
     row = []
     for code in TIMS_ORDER:
-        row.append(InlineKeyboardButton(TYPES[code]['alias'], callback_data=f"{prefix}_{code}"))
+        row.append(InlineKeyboardButton(TYPES[code]['name'], callback_data=f"{prefix}_{code}"))
         if len(row) == 4:
             keyboard.append(row)
             row = []
