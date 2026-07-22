@@ -454,7 +454,15 @@ def main() -> None:
     application.add_error_handler(error_handler)
 
     logger.info("Bot starting...")
-    application.run_polling(drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
+    application.run_polling(
+        drop_pending_updates=True,
+        allowed_updates=Update.ALL_TYPES,
+        timeout=30,
+        read_timeout=30,
+        write_timeout=30,
+        connect_timeout=30,
+        pool_timeout=30,
+    )
 
 if __name__ == "__main__":
     main()
