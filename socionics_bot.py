@@ -43,7 +43,7 @@ QUADRA_VALUES = (
     "Ценности: качество жизни, уют, мудрость, гармония, экология"
 )
 
-SELECT_TYPE_TEXT = "Выберите тип:
+
 
 def init_user_data(context):
     if SCORES not in context.user_data:
