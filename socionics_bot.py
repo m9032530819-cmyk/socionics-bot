@@ -403,7 +403,7 @@ def main() -> None:
 
     request = HTTPXRequest(connection_pool_size=5, read_timeout=10.0, write_timeout=10.0, pool_timeout=10.0)
 
-    application = Application.builder().token(os.getenv("BOT_TOKEN")).set_http_request(request).build()
+    application = Application.builder().token(os.getenv("BOT_TOKEN")).build()
 
     # Get all handlers from the bot
     application.add_handler(CommandHandler("start", start))
