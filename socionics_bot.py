@@ -290,6 +290,20 @@ async def start_compat_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
 
 async def show_type_selection_new(message, text, prefix):
+    quadra_text = (
+        "*1-я Квадра — Альфа* _(дети)_\n"
+        "Дон Кихот, Дюма, Гюго, Робеспьер\n"
+        "Ценности: открытость, новизна, радость познания, демократия, равенство\n\n"
+        "*2-я Квадра — Бета* _(подростки)_\n"
+        "Гамлет, Максим Горький, Жуков, Есенин\n"
+        "Ценности: иерархия, власть, героизм, жертвенность, идеология\n\n"
+        "*3-я Квадра — Гамма* _(взрослые)_\n"
+        "Наполеон, Бальзак, Джек Лондон, Драйзер\n"
+        "Ценности: эффективность, результат, конкуренция, справедливость, деньги\n\n"
+        "*4-я Квадра — Дельта* _(мудрецы)_\n"
+        "Штирлиц, Достоевский, Гексли, Габен\n"
+        "Ценности: качество жизни, уют, мудрость, гармония, экология"
+    )
     keyboard = []
     row = []
     for code in TIMS_ORDER:
@@ -299,25 +313,13 @@ async def show_type_selection_new(message, text, prefix):
             row = []
     if row:
         keyboard.append(row)
-
-    await message.reply_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
-
+    await message.reply_text(quadra_text, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
 
 async def show_type_selection_edit(message, text, prefix):
-    keyboard = []
-    row = []
-    for code in TIMS_ORDER:
-        row.append(InlineKeyboardButton(TYPES[code]['name'], callback_data=f"{prefix}_{code}"))
-        if len(row) == 4:
-            keyboard.append(row)
-            row = []
-    if row:
-        keyboard.append(row)
-
-    try:
-        await message.edit_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
-    except Exception:
-        await message.reply_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
+    quadra_text = (
+        "*1-я Квадра — Альфа* _(дети)_\n"
+        "Дон Кихот, Дюма, Гюго, Робеспьер\n"
+        "Ценности: открытость, новизна,
 
 
 async def type_selected_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
